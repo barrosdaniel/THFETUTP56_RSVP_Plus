@@ -5,7 +5,9 @@ const ul = document.getElementById('invitedList');
 function createLi(text) {
   // Get user input and add new list item
   const li = document.createElement('li');
-  li.textContent = text;
+  const span = document.createElement('span');
+  span.textContent = text;
+  li.appendChild(span);
 
   // Add 'Confirmed' checkbox to guest tile
   const label = document.createElement('label');
@@ -57,7 +59,15 @@ ul.addEventListener('click', (e) => {
     if (button.textContent === 'Remove') {
       ul.removeChild(li);
     } else if (button.textContent === 'Edit') {
-      console.log('Edit button pressed');
+      const span = li.firstElementChild;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = span.textContent;
+      li.insertBefore(input, span);
+      li.removeChild(span);
+      button.textContent = 'Save';
+    } else if (button.textContent === 'Save') {
+      console.log('Save button pressed');
     }
   };
 });
