@@ -15,10 +15,15 @@ function createLi(text) {
   label.appendChild(checkbox);
   li.appendChild(label);
 
+  // Add 'Edit' button to guest tile
+  const EditButton = document.createElement('button');
+  EditButton.textContent = 'Edit';
+  li.appendChild(EditButton);
+
   // Add 'Remove' button to guest tile
-  const button = document.createElement('button');
-  button.textContent = 'Remove';
-  li.appendChild(button);
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'Remove';
+  li.appendChild(removeButton);
 
   return li;
 };
@@ -29,11 +34,6 @@ form.addEventListener('submit', (e) => {
   input.value = '';
   const li = createLi(text);
   ul.appendChild(li);
-
-
-
-
-
 });
 
 ul.addEventListener('change', (e) => {
@@ -51,7 +51,13 @@ ul.addEventListener('change', (e) => {
 
 ul.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
-    const listItem = e.target.parentNode;
-    listItem.remove();
+    const button = e.target;
+    const li = button.parentNode;
+    const ul = li.parentNode;
+    if (button.textContent === 'Remove') {
+      ul.removeChild(li);
+    } else if (button.textContent === 'Edit') {
+      console.log('Edit button pressed');
+    }
   };
 });
