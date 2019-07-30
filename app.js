@@ -67,7 +67,12 @@ ul.addEventListener('click', (e) => {
       li.removeChild(span);
       button.textContent = 'Save';
     } else if (button.textContent === 'Save') {
-      console.log('Save button pressed');
+      const input = li.firstElementChild;
+      const span = document.createElement('span');
+      span.textContent = input.value;
+      li.insertBefore(span, input);
+      li.removeChild(input);
+      button.textContent = 'Edit';
     }
   };
 });
