@@ -4,10 +4,12 @@ const ul = document.getElementById('invitedList');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
+
   // Get user input and add new list item
   const text = input.value;
   const li = document.createElement('li');
   li.textContent = text;
+
   // Add 'Confirmed' checkbox to guest tile
   const label = document.createElement('label');
   label.textContent = 'Confirmed';
@@ -16,6 +18,12 @@ form.addEventListener('submit', (e) => {
   label.appendChild(checkbox);
   li.appendChild(label);
   ul.appendChild(li);
+
+  // Add 'Remove' button to guest tile
+  const button = document.createElement('button');
+  button.textContent = 'Remove';
+  li.appendChild(button);
+
   // Reset input field
   input.value = '';
 });
