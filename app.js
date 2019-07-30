@@ -40,3 +40,10 @@ ul.addEventListener('change', (e) => {
   }
 
 });
+
+ul.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON') {
+    const listItem = e.target.parentNode;
+    listItem.remove();
+  };
+});
