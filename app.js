@@ -2,11 +2,8 @@ const form = document.getElementById('registrar');
 const input = form.querySelector('input');
 const ul = document.getElementById('invitedList');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-
+function createLi(text) {
   // Get user input and add new list item
-  const text = input.value;
   const li = document.createElement('li');
   li.textContent = text;
 
@@ -17,15 +14,26 @@ form.addEventListener('submit', (e) => {
   checkbox.type = 'checkbox';
   label.appendChild(checkbox);
   li.appendChild(label);
-  ul.appendChild(li);
 
   // Add 'Remove' button to guest tile
   const button = document.createElement('button');
   button.textContent = 'Remove';
   li.appendChild(button);
 
-  // Reset input field
+  return li;
+};
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const text = input.value;
   input.value = '';
+  const li = createLi(text);
+  ul.appendChild(li);
+
+
+
+
+
 });
 
 ul.addEventListener('change', (e) => {
