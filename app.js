@@ -1,6 +1,17 @@
 const form = document.getElementById('registrar');
 const input = form.querySelector('input');
 const ul = document.getElementById('invitedList');
+const mainDiv = document.querySelector('.main');
+
+// Add filter checkbox
+const div = document.createElement('div');
+const filterLabel = document.createElement('label');
+filterLabel.textContent = "Hide those who haven't responded";
+const filterCheckbox = document.createElement('input');
+filterCheckbox.type = 'checkbox';
+div.appendChild(filterCheckbox);
+div.appendChild(filterLabel);
+mainDiv.insertBefore(div, ul);
 
 function createLi(text) {
   // Get user input and add new list item
