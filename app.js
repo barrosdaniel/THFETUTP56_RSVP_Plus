@@ -94,37 +94,36 @@ ul.addEventListener('click', (e) => {
     const button = e.target;
     const li = button.parentNode;
     const ul = li.parentNode;
+    const nameActions = {
 
-    function removeName() {
-      ul.removeChild(li);
+      remove: () => {
+        ul.removeChild(li);
+      },
+
+      edit: () => {
+        const span = li.firstElementChild;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = span.textContent;
+        li.insertBefore(input, span);
+        li.removeChild(span);
+        button.textContent = 'Save';
+      },
+
+      save: () => {
+        const input = li.firstElementChild;
+        const span = document.createElement('span');
+        span.textContent = input.value;
+        li.insertBefore(span, input);
+        li.removeChild(input);
+        button.textContent = 'Edit';
+      },
+
     }
 
-    function editName() {
-      const span = li.firstElementChild;
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = span.textContent;
-      li.insertBefore(input, span);
-      li.removeChild(span);
-      button.textContent = 'Save';
-    }
-
-    function saveName() {
-      const input = li.firstElementChild;
-      const span = document.createElement('span');
-      span.textContent = input.value;
-      li.insertBefore(span, input);
-      li.removeChild(input);
-      button.textContent = 'Edit';
-    }
-
-    if (button.textContent === 'Remove') {
-      removeName();
-    } else if (button.textContent === 'Edit') {
-      editName();
-    } else if (button.textContent === 'Save') {
-      saveName();
-    }
+    // Select and run action based on button name
+    let action = button.textContent.toLowerCase();
+    nameActions[action]();
 
   };
 });
