@@ -35,29 +35,33 @@ filterCheckbox.addEventListener('change', (e) => {
 });
 
 function createLi(text) {
-  // Get user input and add new list item
+
+  function createElement(elementName, property, value) {
+    const element = document.createElement(elementName);
+    element[property] = value;
+    return element;
+  }
+
+  function appendToLi(elementName, property, value) {
+    const element = createElement(elementName, property, value);
+    li.appendChild(element);
+    return element;
+  }
+
   const li = document.createElement('li');
-  const span = document.createElement('span');
-  span.textContent = text;
-  li.appendChild(span);
+
+  // Get user input and add new list item
+  appendToLi('span', 'textContent', text);
 
   // Add 'Confirmed' checkbox to guest tile
-  const label = document.createElement('label');
-  label.textContent = 'Confirmed';
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  label.appendChild(checkbox);
-  li.appendChild(label);
+  appendToLi('label', 'textContent', 'Confirmed')
+    .appendChild(createElement('input', 'type', 'checkbox'));
 
   // Add 'Edit' button to guest tile
-  const EditButton = document.createElement('button');
-  EditButton.textContent = 'Edit';
-  li.appendChild(EditButton);
+  appendToLi('button', 'textContent', 'Edit');
 
   // Add 'Remove' button to guest tile
-  const removeButton = document.createElement('button');
-  removeButton.textContent = 'Remove';
-  li.appendChild(removeButton);
+  appendToLi('button', 'textContent', 'Remove');
 
   return li;
 };
